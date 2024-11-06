@@ -1,4 +1,4 @@
-export const getGroups = () => {
+export const getAllGroups = () => {
   return fetch("http://localhost:8000/groups", {
     headers: {
       Authorization: `Token ${
