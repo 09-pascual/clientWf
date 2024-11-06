@@ -18,32 +18,29 @@ export const EditProjectForm = () => {
 
   const [project, setProject] = useState({
     client: "",
-    name: "", // Changed from project_name
+    name: "",
     status: "",
     start_date: "",
     end_date: "",
     expected_duration: "",
-    projectgroup_set: [], // Changed from assigned_group
+    projectgroup_set: [],
   });
 
   useEffect(() => {
-    // Fetch project details
     getProjectById(projectId).then((projectData) => {
-      // Format dates for input fields
       const formattedProject = {
         ...projectData,
-        start_date: new Date(projectData.start_date)
-          .toISOString()
-          .split("T")[0],
-        end_date: new Date(projectData.end_date).toISOString().split("T")[0],
         client: projectData.client.id,
-        // Get group IDs from projectgroup_set
+        name: projectData.name,
+        status: projectData.status,
+        start_date: projectData.start_date,
+        end_date: projectData.end_date,
+        expected_duration: projectData.expected_duration,
         projectgroup_set: projectData.projectgroup_set.map((pg) => pg.group.id),
       };
       setProject(formattedProject);
     });
 
-    // Fetch clients and groups for dropdowns
     Promise.all([getAllClients(), getAllGroups()]).then(
       ([clientsData, groupsData]) => {
         setClients(clientsData);
@@ -55,31 +52,21 @@ export const EditProjectForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Format the data for the API
-    const projectToUpdate = {
-      ...project,
+    const updatedProject = {
       client: parseInt(project.client),
+      name: project.name,
+      status: project.status,
+      start_date: project.start_date,
+      end_date: project.end_date,
       expected_duration: parseInt(project.expected_duration),
-      // Handle groups separately if needed through projectgroup endpoint
     };
 
-    updateProject(projectId, projectToUpdate)
+    updateProject(projectId, updatedProject)
       .then(() => {
         navigate("/");
       })
       .catch((error) => {
         console.error("Error updating project:", error);
-      });
-  };
-
-  const handleDelete = () => {
-    deleteProject(projectId)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error deleting project:", error);
       });
   };
 
@@ -126,6 +113,23 @@ export const EditProjectForm = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">
+            Status
+          </label>
+          <select
+            value={project.status}
+            onChange={(e) => setProject({ ...project, status: e.target.value })}
+            className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+            required
+          >
+            <option value="">Select status</option>
+            <option value="open">Open</option>
+            <option value="closed">Closed</option>
+            <option value="upcoming">Upcoming</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
             Assigned Groups
           </label>
           <select
@@ -155,23 +159,51 @@ export const EditProjectForm = () => {
 
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Status
+            Start Date
           </label>
-          <select
-            value={project.status}
-            onChange={(e) => setProject({ ...project, status: e.target.value })}
+          <input
+            type="date"
+            value={project.start_date}
+            onChange={(e) =>
+              setProject({ ...project, start_date: e.target.value })
+            }
             className="mt-1 block w-full rounded-md border border-gray-300 p-2"
             required
-          >
-            <option value="">Select status</option>
-            <option value="open">Open</option>
-            <option value="closed">Closed</option>
-            <option value="upcoming">Upcoming</option>
-          </select>
+          />
         </div>
 
-        {/* Date and Duration fields remain the same */}
-        {/* ... */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            End Date
+          </label>
+          <input
+            type="date"
+            value={project.end_date}
+            onChange={(e) =>
+              setProject({ ...project, end_date: e.target.value })
+            }
+            className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Expected Duration (days)
+          </label>
+          <input
+            type="number"
+            value={project.expected_duration}
+            onChange={(e) =>
+              setProject({
+                ...project,
+                expected_duration: parseInt(e.target.value),
+              })
+            }
+            className="mt-1 block w-full rounded-md border border-gray-300 p-2"
+            required
+          />
+        </div>
 
         <div className="flex gap-4">
           <button
@@ -197,7 +229,6 @@ export const EditProjectForm = () => {
         </div>
       </form>
 
-      {/* Delete confirmation modal remains the same */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-xl">

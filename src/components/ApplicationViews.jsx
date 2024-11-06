@@ -1,5 +1,4 @@
-// ApplicationViews.jsx
-import { Route, Routes } from "react-router-dom"; // Removed BrowserRouter
+import { Route, Routes } from "react-router-dom";
 import { Authorized } from "./Authorized";
 import { Login } from "../pages/Login.jsx";
 import { Register } from "../pages/Register.jsx";
@@ -12,11 +11,14 @@ export const ApplicationViews = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      
+
       <Route element={<Authorized />}>
         <Route path="/" element={<Home />} />
-        {<Route path="/addClientForm" element={<AddClientForm />} />
-        <Route path="/EditProjectForm:projectId" element={<EditProjectForm/>}/>}
+        <Route path="/addClientForm" element={<AddClientForm />} />
+        <Route
+          path="/editProjectForm/:projectId"
+          element={<EditProjectForm />}
+        />
       </Route>
     </Routes>
   );
