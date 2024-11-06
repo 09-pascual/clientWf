@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { OwnerViews } from "../components/OwnerViews";
+import { WorkerViews } from "../components/WorkerView";
+import { HomePageContent } from "./HomePageContent";
 
 export const Home = () => {
   const [userRole, setUserRole] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     const authInfo = JSON.parse(localStorage.getItem("workflow_token"));
@@ -12,30 +13,30 @@ export const Home = () => {
     }
   }, []);
 
+  const renderContent = () => {
+    switch (userRole) {
+      case "admin":
+        return <OwnerViews />;
+      case "worker":
+        return <WorkerViews />;
+      case "client":
+        return (
+          <div className="client-dashboard">
+            <h2>Client Dashboard</h2>
+            {/* Client specific content */}
+          </div>
+        );
+      default:
+        return <HomePageContent />; // Your default homepage content
+    }
+  };
+
   return (
     <div className="home-container">
-      <h1>Welcome to Workflow Manager</h1>
-
-      {/* Role-based content */}
-      {userRole === "admin" && (
-        <div className="admin-dashboard">
-          <h2>Owner Dashboard</h2>
-          {/* Add admin-specific content */}
-        </div>
-      )}
-
-      {userRole === "worker" && (
-        <div className="worker-dashboard">
-          <h2>Worker Dashboard</h2>
-          {/* Add worker-specific content */}
-        </div>
-      )}
-
-      {userRole === "client" && (
-        <div className="client-dashboard">
-          <h2>Client Dashboard</h2>
-        </div>
-      )}
+      <h1>
+        <strong>Welcome to Workflow Manager</strong>
+      </h1>
+      {renderContent()}
     </div>
   );
 };
