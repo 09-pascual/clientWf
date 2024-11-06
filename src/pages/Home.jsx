@@ -33,7 +33,9 @@ export const Home = () => {
 
   return (
     <div className="home-container">
-      <h1>Welcome to Workflow Manager</h1>
+      <h1>
+        <strong>Welcome to Workflow Manager</strong>
+      </h1>
       {renderContent()}
     </div>
   );

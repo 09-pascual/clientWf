@@ -166,10 +166,12 @@ const ProjectCard = ({ project, navigate, userRole }) => (
         {project.projectgroup_set?.length > 0 ? (
           <div>
             {project.projectgroup_set.map((pg) => (
-              <div key={pg.group.id}>
-                <p className="font-medium">{pg.group.name}</p>
+              <div key={pg.id} className="mb-2">
+                {" "}
+                {/* Added margin-bottom for spacing between groups */}
+                <p className="font-medium">{pg.group?.name}</p>
                 <p className="text-sm text-gray-600 mt-1">
-                  {pg.group.description}
+                  {pg.group?.description}
                 </p>
               </div>
             ))}

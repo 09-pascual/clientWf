@@ -1,91 +1,128 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import "./Navbar.css";
 
 export const NavBar = () => {
   const navigate = useNavigate();
   const userRole = JSON.parse(localStorage.getItem("workflow_token"))?.role;
 
   return (
-    <ul className="navbar pb-10">
-      {localStorage.getItem("workflow_token") && (
-        <>
-          <li className="navbar__item pl-10">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/projects"}
-            >
-              Projects
-            </NavLink>
-          </li>
-
-          {userRole === "admin" && (
-            <li className="navbar__item">
+    <nav className="bg-gradient-to-r from-white to-slate-50 shadow-md border-b border-slate-100">
+      <ul className="flex justify-center items-center space-x-12 py-6 px-4 max-w-7xl mx-auto">
+        {localStorage.getItem("workflow_token") && (
+          <>
+            <li>
               <NavLink
-                className="text-left underline text-blue-600 hover:text-purple-700"
-                to={"/workers"}
+                className={({ isActive }) =>
+                  `text-lg transition-all duration-200 ${
+                    isActive
+                      ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                      : "text-slate-600 hover:text-blue-600 font-medium"
+                  }`
+                }
+                to="/projects"
               >
-                Workers
+                Projects
               </NavLink>
             </li>
-          )}
 
-          {userRole === "admin" && (
-            <li className="navbar__item">
-              <NavLink
-                className="text-left underline text-blue-600 hover:text-purple-700"
-                to={"/clients"}
+            {userRole === "admin" && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `text-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                        : "text-slate-600 hover:text-blue-600 font-medium"
+                    }`
+                  }
+                  to="/workers"
+                >
+                  Workers
+                </NavLink>
+              </li>
+            )}
+
+            {userRole === "admin" && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `text-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                        : "text-slate-600 hover:text-blue-600 font-medium"
+                    }`
+                  }
+                  to="/clients"
+                >
+                  Clients
+                </NavLink>
+              </li>
+            )}
+
+            {userRole === "admin" && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `text-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                        : "text-slate-600 hover:text-blue-600 font-medium"
+                    }`
+                  }
+                  to="/groups"
+                >
+                  Groups
+                </NavLink>
+              </li>
+            )}
+
+            <li>
+              <button
+                className="text-lg text-slate-600 hover:text-red-600 font-medium transition-colors duration-200"
+                onClick={() => {
+                  localStorage.removeItem("workflow_token");
+                  navigate("/login");
+                }}
               >
-                Clients
+                Logout
+              </button>
+            </li>
+          </>
+        )}
+        {!localStorage.getItem("workflow_token") && (
+          <>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `text-lg transition-all duration-200 ${
+                    isActive
+                      ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                      : "text-slate-600 hover:text-blue-600 font-medium"
+                  }`
+                }
+                to="/login"
+              >
+                Login
               </NavLink>
             </li>
-          )}
-
-          {}
-          {userRole === "admin" && (
-            <li className="navbar__item">
+            <li>
               <NavLink
-                className="text-left underline text-blue-600 hover:text-purple-700"
-                to={"/groups"}
+                className={({ isActive }) =>
+                  `text-lg transition-all duration-200 ${
+                    isActive
+                      ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                      : "text-slate-600 hover:text-blue-600 font-medium"
+                  }`
+                }
+                to="/register"
               >
-                Groups
+                Register
               </NavLink>
             </li>
-          )}
-
-          {/* Logout */}
-          <li className="navbar__item">
-            <button
-              className="underline text-blue-600 hover:text-purple-700"
-              onClick={() => {
-                localStorage.removeItem("workflow_token");
-                navigate("/login");
-              }}
-            >
-              Logout
-            </button>
-          </li>
-        </>
-      )}
-      {!localStorage.getItem("workflow_token") && (
-        <>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/login"}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li className="navbar__item">
-            <NavLink
-              className="text-left underline text-blue-600 hover:text-purple-700"
-              to={"/register"}
-            >
-              Register
-            </NavLink>
-          </li>
-        </>
-      )}
-    </ul>
+          </>
+        )}
+      </ul>
+    </nav>
   );
 };
+
+export default NavBar;
