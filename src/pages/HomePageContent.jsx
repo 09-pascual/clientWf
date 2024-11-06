@@ -68,7 +68,7 @@ export const HomePageContent = ({ isWorker }) => {
         {/* Only show Add Client button for admins */}
         {userRole === "admin" && (
           <button
-            onClick={() => navigate("/clients/new")}
+            onClick={() => navigate("/AddClientForm")}
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             Add Client
@@ -132,7 +132,7 @@ const ProjectCard = ({ project, navigate, userRole }) => (
         <h2 className="text-2xl font-semibold">{project.name}</h2>
         {userRole === "admin" && (
           <button
-            onClick={() => navigate(`/projects/${project.id}/edit`)}
+            onClick={() => navigate(`/EditProjectForm/${project.id}`)}
             className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-bold py-1 px-3 rounded"
           >
             Edit
