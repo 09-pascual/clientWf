@@ -7,6 +7,8 @@ import { AddClientForm } from "../clients/AddClientForm.jsx";
 import { EditProjectForm } from "../projects/EditProjectForm.jsx";
 import ShowAllProjectsView from "../projects/ShowAllProjectsView.jsx";
 import ShowAllClients from "../clients/ShowAllClients.jsx";
+import { ShowAllWorkersView } from "../workers/ShowAllWorkers.jsx";
+import { ShowAllGroups } from "../workers/ShowAllGroups.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -22,6 +24,8 @@ export const ApplicationViews = () => {
           path="/editProjectForm/:projectId"
           element={<EditProjectForm />}
         />
+        <Route path="/workers" element={<ShowAllWorkersView />} />
+        <Route path="/groups" element={<ShowAllGroups />} />
         <Route path="/projects" element={<ShowAllProjectsView />} />
       </Route>
     </Routes>
