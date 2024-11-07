@@ -5,6 +5,10 @@ import { Register } from "../pages/Register.jsx";
 import { Home } from "../pages/Home.jsx";
 import { AddClientForm } from "../clients/AddClientForm.jsx";
 import { EditProjectForm } from "../projects/EditProjectForm.jsx";
+import ShowAllProjectsView from "../projects/ShowAllProjectsView.jsx";
+import ShowAllClients from "../clients/ShowAllClients.jsx";
+import { ShowAllWorkersView } from "../workers/ShowAllWorkers.jsx";
+import { ShowAllGroups } from "../workers/ShowAllGroups.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -14,11 +18,15 @@ export const ApplicationViews = () => {
 
       <Route element={<Authorized />}>
         <Route path="/" element={<Home />} />
+        <Route path="/clients" element={<ShowAllClients />} />
         <Route path="/addClientForm" element={<AddClientForm />} />
         <Route
           path="/editProjectForm/:projectId"
           element={<EditProjectForm />}
         />
+        <Route path="/workers" element={<ShowAllWorkersView />} />
+        <Route path="/groups" element={<ShowAllGroups />} />
+        <Route path="/projects" element={<ShowAllProjectsView />} />
       </Route>
     </Routes>
   );
