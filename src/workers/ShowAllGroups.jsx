@@ -66,10 +66,8 @@ export const ShowAllGroups = () => {
                           <div>
                             <p className="font-medium">
                               {gw.worker.user.first_name}{" "}
-                              {gw.worker.user.last_name}
-                            </p>
-                            <p className="text-sm text-gray-600">
-                              {gw.worker.user.nickname}
+                              {gw.worker.user.last_name} "
+                              {gw.worker.user.nickname}"
                             </p>
                           </div>
                           <span

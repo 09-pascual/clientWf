@@ -87,26 +87,6 @@ export const ShowAllWorkersView = () => {
                       </p>
                     )}
                   </div>
-
-                  <div>
-                    <p className="text-sm text-gray-500">Teams</p>
-                    {worker.groupworker_set?.length > 0 ? (
-                      <div className="space-y-1">
-                        {worker.groupworker_set.map((gw) => (
-                          <p
-                            key={gw.group.id}
-                            className="font-medium text-gray-900"
-                          >
-                            {gw.group.name}
-                          </p>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-gray-500 italic">
-                        Not assigned to any team
-                      </p>
-                    )}
-                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-gray-100 flex gap-2">
