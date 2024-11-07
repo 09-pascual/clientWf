@@ -26,6 +26,16 @@ export const EditProjectForm = () => {
     projectgroup_set: [],
   });
 
+  const handleDelete = () => {
+    deleteProject(projectId)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error deleting project:", error);
+      });
+  };
+
   useEffect(() => {
     getProjectById(projectId).then((projectData) => {
       const formattedProject = {
