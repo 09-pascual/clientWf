@@ -27,8 +27,8 @@ export const getWorkerById = (id) => {
   }).then((response) => response.json());
 };
 
-export const updateWorker = (id, worker) => {
-  return fetch(`http://localhost:8000/workers/${id}`, {
+export const updateWorker = (workerId, worker) => {
+  return fetch(`http://localhost:8000/workers/${workerId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
