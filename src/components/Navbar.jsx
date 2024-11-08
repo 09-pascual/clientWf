@@ -13,6 +13,7 @@ export const NavBar = () => {
         <ul className="flex justify-center items-center space-x-12 py-6 px-4 w-full">
           {localStorage.getItem("workflow_token") && (
             <>
+              {/* Homepage link available to all authenticated users */}
               <li>
                 <NavLink
                   className={({ isActive }) =>
@@ -27,72 +28,70 @@ export const NavBar = () => {
                   Homepage
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    `text-lg transition-all duration-200 ${
-                      isActive
-                        ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
-                        : "text-slate-600 hover:text-blue-600 font-medium"
-                    }`
-                  }
-                  to="/projects"
-                >
-                  Projects
-                </NavLink>
-              </li>
 
+              {/* Links only for admin users */}
               {userRole === "admin" && (
-                <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `text-lg transition-all duration-200 ${
-                        isActive
-                          ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
-                          : "text-slate-600 hover:text-blue-600 font-medium"
-                      }`
-                    }
-                    to="/workers"
-                  >
-                    Workers
-                  </NavLink>
-                </li>
+                <>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `text-lg transition-all duration-200 ${
+                          isActive
+                            ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                            : "text-slate-600 hover:text-blue-600 font-medium"
+                        }`
+                      }
+                      to="/projects"
+                    >
+                      Projects
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `text-lg transition-all duration-200 ${
+                          isActive
+                            ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                            : "text-slate-600 hover:text-blue-600 font-medium"
+                        }`
+                      }
+                      to="/workers"
+                    >
+                      Workers
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `text-lg transition-all duration-200 ${
+                          isActive
+                            ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                            : "text-slate-600 hover:text-blue-600 font-medium"
+                        }`
+                      }
+                      to="/clients"
+                    >
+                      Clients
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `text-lg transition-all duration-200 ${
+                          isActive
+                            ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                            : "text-slate-600 hover:text-blue-600 font-medium"
+                        }`
+                      }
+                      to="/groups"
+                    >
+                      Groups
+                    </NavLink>
+                  </li>
+                </>
               )}
 
-              {userRole === "admin" && (
-                <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `text-lg transition-all duration-200 ${
-                        isActive
-                          ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
-                          : "text-slate-600 hover:text-blue-600 font-medium"
-                      }`
-                    }
-                    to="/clients"
-                  >
-                    Clients
-                  </NavLink>
-                </li>
-              )}
-
-              {userRole === "admin" && (
-                <li>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `text-lg transition-all duration-200 ${
-                        isActive
-                          ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
-                          : "text-slate-600 hover:text-blue-600 font-medium"
-                      }`
-                    }
-                    to="/groups"
-                  >
-                    Groups
-                  </NavLink>
-                </li>
-              )}
-
+              {/* Logout button available to all authenticated users */}
               <li>
                 <button
                   className="text-lg text-slate-600 hover:text-red-600 font-medium transition-colors duration-200"
@@ -106,6 +105,8 @@ export const NavBar = () => {
               </li>
             </>
           )}
+
+          {/* Links for unauthenticated users */}
           {!localStorage.getItem("workflow_token") && (
             <>
               <li>

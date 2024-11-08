@@ -1,3 +1,5 @@
+import HomePageContent from "../pages/HomePageContent";
+
 export const WorkerViews = () => {
   return (
     <div className="worker-dashboard">
