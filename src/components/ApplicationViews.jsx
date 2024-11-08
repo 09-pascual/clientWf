@@ -12,8 +12,9 @@ import { ShowAllGroups } from "../workers/ShowAllGroups.jsx";
 import { CreateWorkerForm } from "../workers/CreateWorkerForm.jsx";
 import { CreateProjectForm } from "../projects/CreateProjectForm.jsx";
 import { EditWorkerForm } from "../workers/EditWorkerForm.jsx";
-import { EditGroupForm } from "../workers/EditGroupForm.jsx";
 import { EditClientForm } from "../clients/EditClientForm.jsx";
+import EditGroupForm from "../workers/EditGroupForm.jsx";
+import CreateGroupForm from "../workers/CreateGroupForm.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -32,7 +33,8 @@ export const ApplicationViews = () => {
         <Route path="/editWorkerForm/:workerId" element={<EditWorkerForm />} />
 
         <Route path="/groups" element={<ShowAllGroups />} />
-        <Route path="/editGroupForm/:groupId" element={<EditGroupForm />} />
+        <Route path="/addGroupForm" element={<CreateGroupForm />} />
+        <Route path="/editGroupForm/:id" element={<EditGroupForm />} />
 
         <Route path="/projects" element={<ShowAllProjectsView />} />
         <Route path="/createProjectForm" element={<CreateProjectForm />} />
