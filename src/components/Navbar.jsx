@@ -13,7 +13,6 @@ export const NavBar = () => {
         <ul className="flex justify-center items-center space-x-12 py-6 px-4 w-full">
           {localStorage.getItem("workflow_token") && (
             <>
-              {/* Homepage link available to all authenticated users */}
               <li>
                 <NavLink
                   className={({ isActive }) =>
@@ -23,13 +22,12 @@ export const NavBar = () => {
                         : "text-slate-600 hover:text-blue-600 font-medium"
                     }`
                   }
-                  to="/home"
+                  to="/"
                 >
                   Homepage
                 </NavLink>
               </li>
 
-              {/* Links only for admin users */}
               {userRole === "admin" && (
                 <>
                   <li>
@@ -91,7 +89,6 @@ export const NavBar = () => {
                 </>
               )}
 
-              {/* Logout button available to all authenticated users */}
               <li>
                 <button
                   className="text-lg text-slate-600 hover:text-red-600 font-medium transition-colors duration-200"
@@ -106,7 +103,6 @@ export const NavBar = () => {
             </>
           )}
 
-          {/* Links for unauthenticated users */}
           {!localStorage.getItem("workflow_token") && (
             <>
               <li>

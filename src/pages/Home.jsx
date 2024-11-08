@@ -27,7 +27,7 @@ export const Home = () => {
           </div>
         );
       default:
-        return <HomePageContent />; // Your default homepage content
+        return <HomePageContent />;
     }
   };
 

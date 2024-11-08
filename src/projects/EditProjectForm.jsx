@@ -68,7 +68,9 @@ export const EditProjectForm = () => {
       start_date: project.start_date,
       end_date: project.end_date,
       expected_duration: parseInt(project.expected_duration),
-      groups: project.projectgroup_set.map((groupId) => ({ id: groupId })),
+      groups: project.projectgroup_set.map((groupId) => ({
+        id: groupId,
+      })),
     };
 
     updateProject(projectId, updatedProject)

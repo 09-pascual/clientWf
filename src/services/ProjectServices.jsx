@@ -1,3 +1,5 @@
+import { json } from "react-router-dom";
+
 // services/ProjectServices.js
 export const getAllProjects = () => {
   return fetch("http://localhost:8000/projects", {
@@ -24,7 +26,11 @@ export const updateProject = (projectId, updatedProject) => {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("workflow_token")).token
+      }`,
     },
+
     body: JSON.stringify(updatedProject),
   }).then((response) => {
     if (!response.ok) {
