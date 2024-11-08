@@ -50,6 +50,14 @@ export const ShowAllProjectsView = () => {
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold text-gray-900">All Projects</h2>
         <div className="flex items-center gap-3">
+          <div>
+            <button
+              onClick={() => navigate("/createProjectForm")}
+              className="boder border-green-300 square-md px-3"
+            >
+              Create Project{" "}
+            </button>
+          </div>
           <select
             id="status-filter"
             value={statusFilter}

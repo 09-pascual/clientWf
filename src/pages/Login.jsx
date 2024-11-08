@@ -25,7 +25,7 @@ export const Login = () => {
         if (authInfo.valid) {
           localStorage.setItem("workflow_token", JSON.stringify(authInfo));
           localStorage.setItem("user_role", authInfo.role); // Save role for role-based UI
-          navigate("/");
+          navigate("/home");
         } else {
           existDialog.current.showModal();
         }

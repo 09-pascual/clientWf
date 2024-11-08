@@ -22,6 +22,20 @@ export const NavBar = () => {
                         : "text-slate-600 hover:text-blue-600 font-medium"
                     }`
                   }
+                  to="/home"
+                >
+                  Homepage
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `text-lg transition-all duration-200 ${
+                      isActive
+                        ? "text-blue-700 font-semibold border-b-2 border-blue-700 pb-1"
+                        : "text-slate-600 hover:text-blue-600 font-medium"
+                    }`
+                  }
                   to="/projects"
                 >
                   Projects

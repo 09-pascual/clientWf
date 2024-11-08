@@ -18,7 +18,7 @@ export const AddClientForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createClient(client).then(() => {
-      navigate("/");
+      navigate("/clients");
     });
   };
 

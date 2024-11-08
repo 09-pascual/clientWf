@@ -9,6 +9,11 @@ import ShowAllProjectsView from "../projects/ShowAllProjectsView.jsx";
 import ShowAllClients from "../clients/ShowAllClients.jsx";
 import { ShowAllWorkersView } from "../workers/ShowAllWorkers.jsx";
 import { ShowAllGroups } from "../workers/ShowAllGroups.jsx";
+import { CreateWorkerForm } from "../workers/CreateWorkerForm.jsx";
+import { CreateProjectForm } from "../projects/CreateProjectForm.jsx";
+import { EditWorkerForm } from "../workers/EditWorkerForm.jsx";
+import { EditGroupForm } from "../workers/EditGroupForm.jsx";
+import { EditClientForm } from "../clients/EditClientForm.jsx";
 
 export const ApplicationViews = () => {
   return (
@@ -17,16 +22,24 @@ export const ApplicationViews = () => {
       <Route path="/register" element={<Register />} />
 
       <Route element={<Authorized />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/clients" element={<ShowAllClients />} />
         <Route path="/addClientForm" element={<AddClientForm />} />
+        <Route path="/editClientForm/:clientId" element={<EditClientForm />} />
+
+        <Route path="/workers" element={<ShowAllWorkersView />} />
+        <Route path="/createWorkerForm" element={<CreateWorkerForm />} />
+        <Route path="/editWorkerForm/:workerId" element={<EditWorkerForm />} />
+
+        <Route path="/groups" element={<ShowAllGroups />} />
+        <Route path="/editGroupForm/:groupId" element={<EditGroupForm />} />
+
+        <Route path="/projects" element={<ShowAllProjectsView />} />
+        <Route path="/createProjectForm" element={<CreateProjectForm />} />
         <Route
           path="/editProjectForm/:projectId"
           element={<EditProjectForm />}
         />
-        <Route path="/workers" element={<ShowAllWorkersView />} />
-        <Route path="/groups" element={<ShowAllGroups />} />
-        <Route path="/projects" element={<ShowAllProjectsView />} />
       </Route>
     </Routes>
   );

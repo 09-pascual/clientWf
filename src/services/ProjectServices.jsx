@@ -19,17 +19,19 @@ export const getProjectById = (id) => {
   }).then((response) => response.json());
 };
 
-export const updateProject = (id, project) => {
-  return fetch(`http://localhost:8000/projects/${id}`, {
+export const updateProject = (projectId, updatedProject) => {
+  return fetch(`http://localhost:8000/projects/${projectId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Token ${
-        JSON.parse(localStorage.getItem("workflow_token")).token
-      }`,
     },
-    body: JSON.stringify(project),
-  }).then((response) => response.json());
+    body: JSON.stringify(updatedProject),
+  }).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  });
 };
 
 export const deleteProject = (id) => {
@@ -41,4 +43,17 @@ export const deleteProject = (id) => {
       }`,
     },
   });
+};
+
+export const createProject = (project) => {
+  return fetch("http://localhost:8000/projects", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Token ${
+        JSON.parse(localStorage.getItem("workflow_token")).token
+      }`,
+    },
+    body: JSON.stringify(project),
+  }).then((response) => response.json());
 };

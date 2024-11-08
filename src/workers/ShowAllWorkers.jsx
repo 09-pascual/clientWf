@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAllWorkers } from "../services/Workers";
 
 export const ShowAllWorkersView = () => {
   const [workers, setWorkers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getAllWorkers()
@@ -27,6 +29,9 @@ export const ShowAllWorkersView = () => {
     <div className="max-w-7xl mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold text-gray-900">All Workers</h1>
+        <button onClick={() => navigate("/createWorkerForm")}>
+          Create Worker
+        </button>
       </div>
 
       {workers.length > 0 ? (

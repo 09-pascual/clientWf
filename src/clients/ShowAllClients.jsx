@@ -94,12 +94,6 @@ export const ShowAllClients = () => {
 
                 <div className="pt-4 border-t border-gray-100 flex gap-2">
                   <Link
-                    to="/projects"
-                    className="inline-flex items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-md hover:bg-yellow-600 transition-colors duration-150"
-                  >
-                    View Projects
-                  </Link>
-                  <Link
                     to={`/editClientForm/${client.id}`}
                     className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors duration-150"
                   >
